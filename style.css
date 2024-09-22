@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-dark-green: rgb(82,180,120);
+    --button-light-green: rgb(152,216,177);
+    --button-dark-green: rgb(105, 188, 138);
+}
+
+body {
+    font-size: 64px;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+.calculator {
+    width: 80vh;
+    height: 95vh;
+    margin: 2vh auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-dark-green);
+    border-radius: 10px;
+}
+
+.display {
+    height: 25%;
+    width: 90%;
+    margin-bottom: 3rem;
+}
+
+.button-container {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 90%;
+    padding: 0 5% 5%;
+    gap: .5rem;
+}
+
+button {
+    flex:1 1 15%;
+    border-radius: 12px;
+    margin: 0 .5rem;
+    background-color: var(--button-light-green);
+    border: none;
+    color: #fff;
+    font-size: 2.2rem;
+    padding: 1rem;
+}
+
+#equals {
+    flex: 2 2 36%;
+    background-color: #fff;
+    color: #333;
+}
+
+#clear-all,
+#clear-entry,
+#pos-neg,
+#division,
+#product,
+#minus,
+#plus {
+    background-color: var(--button-dark-green);
+}
