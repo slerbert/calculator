@@ -33,9 +33,15 @@ body {
     height: 30%;
     width: 85%;
     margin-bottom: 1rem;
+    padding: .5rem;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    border-radius: 10px 10px;
+}
+
+.display-error {
+    font-size: 32px;
 }
 
 .button-container {
@@ -56,15 +62,34 @@ button {
     border: none;
     font-size: 2.2rem;
     padding: 1rem;
+    box-shadow: 4px 4px;
+    border: 3px solid var(--main-dark-green)
 }
+
+button:active {
+    box-shadow: 2px 2px;
+    transform: translateY(4px);
+    transform: translateX(4px);
+}
+
+button:hover {background-color:rgba(152,216,177, .7)}
 
 .modifier,
 .operator {
     background-color: var(--button-dark-green);
 }
 
+.modifier:hover,
+.operator:hover {
+    background-color: rgba(105, 188, 138, .3);
+}
+
 [data-value='='] {
     flex: 2 2 36%;
     background-color: #fff;
     color: #333;
+}
+
+[data-value='=']:hover {
+    background-color: rgb(240,240,240);
 }
