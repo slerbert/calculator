@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    color: #fff;
 }
 
 :root {
@@ -29,9 +30,12 @@ body {
 }
 
 .display {
-    height: 25%;
-    width: 90%;
-    margin-bottom: 3rem;
+    height: 30%;
+    width: 85%;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .button-container {
@@ -50,23 +54,17 @@ button {
     margin: 0 .5rem;
     background-color: var(--button-light-green);
     border: none;
-    color: #fff;
     font-size: 2.2rem;
     padding: 1rem;
 }
 
-#equals {
+.modifier,
+.operator {
+    background-color: var(--button-dark-green);
+}
+
+[data-value='='] {
     flex: 2 2 36%;
     background-color: #fff;
     color: #333;
-}
-
-#clear-all,
-#clear-entry,
-#pos-neg,
-#division,
-#product,
-#minus,
-#plus {
-    background-color: var(--button-dark-green);
 }
