@@ -241,7 +241,7 @@ class Operand extends Operation {
         } else {
             this.value = -Math.abs(this.value);
         }
-        this.value.toString();
+        this.value = this.value.toString();
         updateDisplay(this.name);
     }
 }
