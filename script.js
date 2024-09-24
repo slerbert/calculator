@@ -26,17 +26,18 @@ function roundValue(num, roundTo=3) {
 }
 
 function equals() {
-    // evaluate expression
+    // Evaluate expression
     let result = operate(operator.value, firstOperand.value, secondOperand.value);
     
+    // Round result if necessary
     if (countDecimals(firstOperand.value) > 2) {
         result = roundValue(result);
     }
 
-    // write the result of the expression to firstOperand
+    // Write the result of the expression to firstOperand
     firstOperand.update(result, overwrite=true);
     
-    // clear operator and secondOperand variables
+    // Clear operator and secondOperand variables
     secondOperand.reset();
     operator.reset();
 }
@@ -48,17 +49,21 @@ function clearAll() {
 }
 
 function clearEntry() {
+    // Get current state of the operator and operand variables
     let operationState = getOperationState();
     
     if (operationState == '000') {
+        // All variables are set
         if (secondOperand.value.length > 1) {
             secondOperand.pop();
         } else {
             secondOperand.reset();
         }
     } else if (operationState == '001') {
+        // Only secondOperand is empty
         operator.reset();
     } else if (operationState == '011') {
+        // Only firstOperand is set
         if (firstOperand.value.length > 1) {
             firstOperand.pop();
         } else {
@@ -124,10 +129,11 @@ function handleOperandPress(buttonDataValue) {
 
 function handleOperatorPress(buttonDataValue) {
     if(!firstOperand.isEmpty() && secondOperand.isEmpty()) {
-        // change operator if secondOperand hasn't been set
+        // Change operator if secondOperand hasn't been set
         operator.update(buttonDataValue);
     } else if(!secondOperand.isEmpty()) {
-        // Trigger evaluation of expression
+        // Trigger evaluation of expression if operator pressed 
+        // _after_ secondOperand has been set
         equals()
         operator.update(buttonDataValue);
     }   
@@ -159,16 +165,20 @@ function handleModifierPress(buttonDataValue) {
             let operationState = getOperationState();
 
             if(operationState == '011') {
+                // Only firstOperand set
                 if(!firstOperand.value.includes('.')) {
                   firstOperand.update('.')
                 }
             } else if(operationState == '111') {
+                // Operator and operands are empty
                 firstOperand.update('0.')
             } else if (operationState == '000') {
+                // Operator and operands are all set
                 if (!secondOperand.value.includes('.')) {
                     secondOperand.update('.')
                 }
             } else if(operationState == '001') {
+                // Only secondOperand is empty
                 secondOperand.update('0.');
             }
             break;
@@ -189,7 +199,6 @@ function updateDisplay() {
     } else {
         displayValue = '0';
     }
-
 
     if (firstOperand.value.includes('Error')) {
         display.classList.toggle('display-error');
@@ -247,7 +256,7 @@ class Operand extends Operation {
 }
 
 function getOperationState() {
-    // returns string of length 3 representing binary states of firstOperand, secondOperand, and operator
+    // Returns string of length 3 representing binary states of firstOperand, secondOperand, and operator
     /// 111 = all empty; 000 = all non-empty; 100 = only firstOperand empty, etc
     
     return `${firstOperand.isEmpty()}${operator.isEmpty()}${secondOperand.isEmpty()}`;
